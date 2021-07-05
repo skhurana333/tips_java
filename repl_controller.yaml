@@ -1,0 +1,23 @@
+# kubectl delete rc uip-adapter-rc --cascade=false
+# kubectl create -f repl_controller.yaml
+apiVersion: v1
+kind: ReplicationController # this manifests define a replication controller
+metadata:
+  name: uip-adapter-rc # name of this replication controller
+spec:
+  replicas: 2  # desired number of pod instances
+  selector: # pod selector determining what pods the rc is operating on
+    app: uip-adapter-rc
+  template:  # pod template for creating new pods
+    metadata:
+      labels:
+        app: uip-adapter-rc  # app label value for pods
+    spec:
+      containers:
+        - name: uip-adapter-rc
+          image: intuit_uip_adaptor:latest
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh"]
+          args: ["-c", "while true; do echo hello; sleep 10;done"]
+          ports:
+            - containerPort: 80

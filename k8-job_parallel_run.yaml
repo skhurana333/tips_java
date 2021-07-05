@@ -1,0 +1,12 @@
+# kubectl -f create k8-job_parallel_run.yaml
+# kubectl get po
+# scaling the job - kubectl scale job multi-completion-batch-job --replicas 3
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: multi-completion-batch-job
+spec:
+  completions: 5 # this job ensures 5 pods complete successfully
+  parallelism: 2 # upto 2 pods can run in parallel
+  template:
+    <same as last example>

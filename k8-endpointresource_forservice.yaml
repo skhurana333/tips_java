@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: external-service  # name of endpoint should  match name of
+                          #the service(k8-service_without_selector.yaml)
+subsets:
+  - addresses:
+      - ip: 11.11.11.11     #ip of enpoints the service will forward connections to
+      - ip: 22.22.22.22
+    ports:
+      - port: 80         # target port of endpoints

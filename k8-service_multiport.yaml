@@ -1,0 +1,17 @@
+#  kubectl get pods --show-labels
+#  kubectl create -f k8-service_multiport.yaml
+#  kubectl get svc
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubia
+spec:
+  ports:
+    - name: http            # name
+      port: 80   # port 80 is mapped to pods 80 (below is for pod)
+      targetPort: 80
+    - name: https  # Port 443 is mapped to pods’ port 8443.
+      port: 443
+      targetPort: 8443
+  selector:     # applies to the whole service
+    app: uip-adapter-rc # all pods with app=uip-adapter-rc will be par of this

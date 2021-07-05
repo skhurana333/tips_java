@@ -1,0 +1,41 @@
+# one time - kubectl create namespace deleteme
+# kubectl delete deploy  uip-adaptor
+# kubectl delete po uip-adaptor
+# kubectl create -f k8.yaml -n deleteme
+# kubectl get pods
+# For one of the pods in above list
+#   kubectl get po  uip-adaptor-56dcbdd5f8-f8z44  -o yaml
+# kubectl logs  uip-adaptor-56dcbdd5f8-f8z44
+
+# dekete
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: uip-adaptor
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deploy: uip-adaptor
+
+  template:
+    metadata:
+      labels:
+        deploy: uip-adaptor
+    spec:
+      containers:
+      - image: intuit_uip_adaptor:latest
+        imagePullPolicy: IfNotPresent 
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo hello; sleep 10;done"]
+        #command: ["/bin/sh"]
+        name: uip-adaptor
+        ports:
+          - containerPort: 80
+        #livenessProbe:  # todo check why liveeness probe keeps failing
+        #  httpGet:
+        #    path: /
+        #    port: 80
+        #  periodSeconds: 20
+        #  timeoutSeconds: 5

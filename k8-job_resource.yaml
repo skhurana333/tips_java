@@ -1,0 +1,14 @@
+apiVersion: batch/v1  #  Jobs are in the batch API group, version v1.
+kind: Job
+metadata:
+  name: batch-job
+spec:   #not specifying a pod selector (it will be created based on the labels in the pod template).
+  template:
+    metadata:
+      labels:
+        app: batch-job
+    spec:
+      restartPolicy: OnFailure  # Jobs can’t use the default restart policy, which is Always. Use OnFailure or Never
+      containers:
+        - name: main
+          image: intuit_uip_adaptor:latest #  todo - put image which does 1 time job

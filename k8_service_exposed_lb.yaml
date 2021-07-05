@@ -1,0 +1,13 @@
+# kubectl create -f k8_service_exposed_lb.yaml
+# kubectl get svc adaptor-loadbalancer
+apiVersion: v1
+kind: Service
+metadata:
+  name: adaptor-loadbalancer
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: intuit-uip-adaptor

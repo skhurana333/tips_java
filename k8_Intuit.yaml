@@ -1,0 +1,9 @@
+kind: IKSConfig
+apiVersion: iks/v1alpha1
+metadata:
+  name: test_small_cluster
+spec:
+  clusterBasicConfig:
+    image: 0116e78d4689a66ee
+    type: dev
+    size: small
