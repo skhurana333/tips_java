@@ -17,15 +17,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      deploy: uip-adaptor
+      deploy: java-docker-skh
 
   template:
     metadata:
       labels:
-        deploy: uip-adaptor
+        deploy: java-docker-skh
     spec:
       containers:
-      - image: intuit_uip_adaptor:latest
+      - image: java-docker_skh:latest
         imagePullPolicy: IfNotPresent 
         command: ["/bin/sh"]
         args: ["-c", "while true; do echo hello; sleep 10;done"]

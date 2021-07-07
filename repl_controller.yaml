@@ -3,21 +3,20 @@
 apiVersion: v1
 kind: ReplicationController # this manifests define a replication controller
 metadata:
-  name: uip-adapter-rc # name of this replication controller
+  name: java-docker-skh-rc # name of this replication controller
 spec:
   replicas: 2  # desired number of pod instances
   selector: # pod selector determining what pods the rc is operating on
-    app: uip-adapter-rc
+    app: java-docker-skh
   template:  # pod template for creating new pods
     metadata:
       labels:
-        app: uip-adapter-rc  # app label value for pods
+        app: java-docker-skh  # app label value for pods
     spec:
       containers:
-        - name: uip-adapter-rc
-          image: intuit_uip_adaptor:latest
+        - name: java-docker-skh-rc
+          image: java-docker_skh:latest
           imagePullPolicy: IfNotPresent
-          command: ["/bin/sh"]
-          args: ["-c", "while true; do echo hello; sleep 10;done"]
+          command: ["./mvnw", "spring-boot:run"]
           ports:
-            - containerPort: 80
+            - containerPort: 8080
