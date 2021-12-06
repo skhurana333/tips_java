@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-via-envvar
+spec:
+  containers:
+  - image: java-docker_skh
+    imagePullPolicy: IfNotPresent
+    command: ["./mvnw", "spring-boot:run"]
+    name: configmap-via-envvar
+    env:                             
+    - name: DB_HOST                
+      valueFrom:                     
+        configMapKeyRef:             
+          name: envconfigs       
+          key: jdbcUrl        
