@@ -10,4 +10,4 @@ RUN ./mvnw dependency:go-offline
 
 COPY src ./src
 
-CMD ["./mvnw", "spring-boot:run", "-Dspring-boot.run.arguments=--person.name=SandeepKhurana"] 
+CMD ["./mvnw", "spring-boot:run", "-Dspring-boot.run.arguments=--DB_URL=from_docker"] 

@@ -16,7 +16,7 @@ spec:
    containers:
    - image: java-docker_skh:latest
      env:
-       - name: DB_HOST
+       - name: DB_URL
          value: jdbc:mysql://localhost:3306/app  
      imagePullPolicy: IfNotPresent
      command: ["./mvnw", "spring-boot:run"]
