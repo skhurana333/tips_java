@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: java-docker-skh
+
+spec:
+   containers:
+   - image: java-docker_skh:latest
+     command: ["./mvnw", "spring-boot:run"]
+     name: java-docker-skh
+     env:
+       - name: DB_URL
+         valueFrom: 
+           configMapKeyRef:
+             name: app-config
+             key: dev-jdbc-url 
+     imagePullPolicy: IfNotPresent
