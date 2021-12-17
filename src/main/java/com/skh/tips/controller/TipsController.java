@@ -13,7 +13,21 @@ public class TipsController {
 
     @Value("${anotherSystemUrl:defaultUrl}")
     private String anotherSystemUrl;
-    
+
+    @Value("${debugValue:defaultDebugValue}")
+    private String debugValue;
+
+    @Value("${maxConnections:dmc}")
+    private String maxConnections;
+
+    @Value("${outputDir:defaultOutputDir}")
+    private String outputDir ;
+
+    @Value("${kafkaTopicName:defaulKafkaTopicName}")
+    private String kafkaTopicName ;
+
+
+
     @RequestMapping(method = RequestMethod.GET, path = "/tips")
     public String getTip() {
         return "{\"tip\" :" + "\""    + db_url +   ":FirstTip,\"" + anotherSystemUrl + "}";

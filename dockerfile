@@ -6,8 +6,9 @@ WORKDIR /app
 
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
 
 COPY src ./src
+COPY confDir/  confDir 
 
+RUN ./mvnw dependency:go-offline
 CMD ["./mvnw", "spring-boot:run", "-Dspring-boot.run.arguments=--DB_URL=from_docker"] 
