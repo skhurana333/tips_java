@@ -11,6 +11,9 @@ spec:
      command: ["./mvnw", "spring-boot:run"]
      name: java-docker-skh
      imagePullPolicy: IfNotPresent
+     env:
+     - name: JAVA_HOME
+       value: /opt/java/openjdk
      #volumeMounts:
      #   - name: myconfig
      #     mountPath: /etc/configDir/
