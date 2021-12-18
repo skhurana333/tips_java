@@ -1,0 +1,24 @@
+# in notepad++ - click on edit -> eol conversion to unix
+FROM adoptopenjdk/openjdk16
+
+WORKDIR /app
+
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+
+COPY src ./src
+COPY confDir ./confDir
+COPY README.md ./
+RUN echo $(ls  /app)
+
+WORKDIR /etc
+RUN mkdir   confDir
+COPY confDir /etc/confDir
+RUN echo $(ls  /etc/confDir)
+
+RUN apt-get update && apt-get install -y dos2unix
+WORKDIR /app
+RUN dos2unix mvnw
+RUN ./mvnw dependency:go-offline
+CMD ["./mvnw", "spring-boot:run", "-Dspring-boot.run.arguments=--DB_URL=from_docker"]
+

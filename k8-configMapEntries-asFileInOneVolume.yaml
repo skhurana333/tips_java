@@ -14,13 +14,13 @@ spec:
      env:
      - name: JAVA_HOME
        value: /opt/java/openjdk
-     #volumeMounts:
-     #   - name: myconfig
-     #     mountPath: /etc/configDir/
+     volumeMounts:
+        - name: myconfig
+          mountPath: /etc/configDir/
 
-   #volumes:
-   #- name: myconfig
-   #  configMap:
-   #    name: customConfig   # vol refering to customConfig configMap  
+   volumes:
+   - name: myconfig
+     configMap:
+       name: customConfig   # vol refering to customConfig configMap  
 
    
