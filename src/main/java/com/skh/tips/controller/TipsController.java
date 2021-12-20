@@ -30,6 +30,26 @@ public class TipsController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/tips")
     public String getTip() {
-        return "{\"tip\" :" + "\""    + db_url +   ":FirstTip,\"" + anotherSystemUrl + "}";
+
+        return "{\"tip\" :" + "\""    + db_url +   ":FirstTip,\""  + "}";
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET, path = "/tipsall")
+    public String getTipsAll() {
+        String data = new StringBuilder()
+            .append(db_url)
+            .append(",")
+            .append(anotherSystemUrl)
+            .append(",")
+            .append(debugValue)
+            .append(",")
+            .append(maxConnections)
+            .append(",")
+            .append(outputDir)
+            .append(",")
+            .append(kafkaTopicName).toString();
+
+        return "{\"tip\" :" + "\""    + db_url +   ":FirstTip,\"" + data + "}";
     }
 }

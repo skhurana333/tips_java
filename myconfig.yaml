@@ -1,0 +1,13 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: customconfig
+data:
+  # Configuration values are set as key-value properties
+  DB_URL: fromConfigFileUrl
+  anotherSystemUrl: fromFile_anotheSsystemUrl
+  debugValue: info
+  maxConnections: "9"  # need to put integer within double quotes
+  outputDir: myoutputDirFromFile 
+  kafkaTopicName: testKafkaTopic 
+ 

@@ -17,5 +17,10 @@ spec:
    - name: myconfig
      configMap:
        name: customconfig   # vol refering to customConfig configMap  
+       items:
+       - key: DB_URL
+         path: dbUrlFileName # this will the file name under /etc/mycondigDir having value of DB_URL
+       - key: debugValue
+         path: debugValueFileName 
 
    
