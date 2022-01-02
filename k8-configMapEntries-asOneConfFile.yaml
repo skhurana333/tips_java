@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: java-docker-skh-configmap-as-files-in-vol
+
+spec:
+   containers:
+   - image: java-docker_skh:latest
+     command: ["./mvnw", "spring-boot:run"]
+     name: java-docker-skh
+     imagePullPolicy: IfNotPresent
+     volumeMounts:
+        - name: myconfig
+          mountPath: /etc/myconfigDir/myfile.conf # mounting to a file
+          subPath: debugValue
+   volumes:
+    - name: myconfig
+      configMap:
+        name: customconfig   # vol refering to customConfig configMap
+
+   
