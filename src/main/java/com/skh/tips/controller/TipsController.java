@@ -26,6 +26,11 @@ public class TipsController {
     @Value("${kafkaTopicName:defaulKafkaTopicName}")
     private String kafkaTopicName ;
 
+    // secrets injection
+    @Value("${db_password:defdbpw}")
+    private String dbPassword;
+    @Value("${client_secret:defcs}")
+    private String clientSecret;
 
 
     @RequestMapping(method = RequestMethod.GET, path = "/tips")
@@ -34,6 +39,13 @@ public class TipsController {
         return "{\"tip\" :" + "\""    + db_url +   ":FirstTip,\""  + "}";
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/info")
+    public String getInfo() {
+
+        return "{\"info1\" :" + "\""    + dbPassword + "\"" +
+              "\"info2\" :" + "\""    + clientSecret + "\"" +
+            "\",Warning\":"  + "\". !!!NEVER DO THIS. ITS ONLY FOR DEMO!!!}\"";
+    }
 
     @RequestMapping(method = RequestMethod.GET, path = "/tipsall")
     public String getTipsAll() {

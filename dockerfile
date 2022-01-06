@@ -17,6 +17,7 @@ WORKDIR /etc
 RUN mkdir   confDir
 COPY confDir /etc/confDir
 RUN echo $(ls  /etc/confDir)
+RUN echo $(cat  /app/src/main/java/com/skh/tips/controller/TipsController.java)
 
 
 WORKDIR /app
