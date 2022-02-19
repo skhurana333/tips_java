@@ -1,0 +1,14 @@
+# A PersistentVolumeClaim (PVC) is a request for storage by a user. It is similar to a Pod. 
+# Pods consume node resources and PVCs consume PV resources
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim1
+spec:
+  storageClassName: standard
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi

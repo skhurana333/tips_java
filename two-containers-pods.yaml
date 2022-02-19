@@ -1,0 +1,31 @@
+# https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/
+apiVersion: v1
+kind: Pod
+metadata:
+  name: java-docker-skh
+
+spec:
+   containers:
+   - image: java-docker_skh:latest
+     imagePullPolicy: IfNotPresent
+     command: ["./mvnw", "spring-boot:run"]
+     name: java-docker-skh
+   - image: mysql:8.0
+     name: mysql
+     imagePullPolicy: IfNotPresent
+     env:
+     - name: MYSQL_ROOT_PASSWORD
+       valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
+     ports:
+     - containerPort: 3306
+     volumeMounts:
+     - name: mysql-persistent-storage
+       mountPath: /var/lib/mysqlk8
+   volumes:
+   - name: mysql-persistent-storage
+     persistentVolumeClaim:
+       claimName: mysql-pv-claim1
+
