@@ -1,16 +1,8 @@
-# one time - kubectl create namespace deleteme
-# kubectl delete po uip-adaptor
-# kubectl create -f k8-pods.yaml -n deleteme
-# kubectl get pods -n deleteme
-# For one of the pods in above list
-#    kubectl get po  uip-adaptor  -o yaml -n deleteme
-# kubectl logs  uip-adaptor -n deleteme
-
-# delete
 apiVersion: v1
 kind: Pod
 metadata:
   name: java-docker-skh
+  namespace: my-namespace
 
 spec:
    containers:
