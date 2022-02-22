@@ -1,21 +1,22 @@
 # kubectl create  -f k8_replicaset.yaml
 # kubectl get rs
 # kubectl describe rs
-# kubectl delete rs uip-adapter-rs
+# kubectl delete rs  java-docker-skh-rs
 apiVersion: apps/v1 #replicaset belong to this api
 kind: ReplicaSet
 metadata:
-  name: uip-adapter-rs
+  name: java-docker-skh-rs
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: uip-adapter-rs  # matchlabel selector like replicationcontroller
+      app: java-docker-skh  # matchlabel selector like replicationcontroller
   template: # The template is the same as in the ReplicationController
     metadata:
       labels:
-        app: uip-adapter-rs
+        app: java-docker-skh
     spec:
       containers:
-        - name: uip-adapter-rs
-          image: intuit_uip_adaptor:latest
+        - name: java-docker-skh-container
+          image: java-docker_skh:latest
+          imagePullPolicy: IfNotPresent

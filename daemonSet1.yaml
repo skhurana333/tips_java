@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: app-monitor
+spec:
+  selector:    # 
+    matchLabels: 
+      app-check-log-security: yes
+  temnplate:
+    metadata:
+      labels:
+        app-check-log-security: yes
+    spec:
+      nodeselector: 
+        app-logs: monitor
+      containers:
+      - name: java-log-security-daemon
+        image: st
+ 
+
