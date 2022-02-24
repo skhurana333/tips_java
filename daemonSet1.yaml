@@ -3,18 +3,28 @@ kind: DaemonSet
 metadata:
   name: app-monitor
 spec:
-  selector:    # 
+  selector:
     matchLabels: 
-      app-check-log-security: yes
-  temnplate:
+      name: app-check-log-security
+  template: 
     metadata:
       labels:
-        app-check-log-security: yes
+        name: app-check-log-security
     spec:
-      nodeselector: 
-        app-logs: monitor
+      nodeSelector: 
+        appName: sales 
+      
+      volumes:
+        - name: temp
+          hostPath:
+            path: /Users/skhurana1
       containers:
       - name: java-log-security-daemon
-        image: st
+        image: logchecker:1.0
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - name : temp
+            mountPath: /tmp1
+       
  
 
