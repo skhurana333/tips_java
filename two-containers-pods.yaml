@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: java-docker-skh
+  name: java-docker-skh-two-containers
 
 spec:
    containers:
