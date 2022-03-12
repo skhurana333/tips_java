@@ -1,0 +1,18 @@
+apiVersion: apps/v1 #replicaset belong to this api
+kind: ReplicaSet
+metadata:
+  name: java-tips-service-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: java-tips-backend
+  template: 
+    metadata:
+      labels:
+        app: java-tips-backend
+    spec:
+      containers:
+        - name: java-docker-skh-container
+          image: java-docker_skh:latest
+          imagePullPolicy: IfNotPresent

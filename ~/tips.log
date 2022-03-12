@@ -1,0 +1,6 @@
+2022-03-12 22:28:24,556 INFO org.springframework.boot.StartupInfoLogger [main] Starting TipsApplication v0.0.1-SNAPSHOT using Java 11.0.14.1 on INTUL18229676b with PID 96364 (/Users/skhurana1/code/tips_java/target/tips-0.0.1-SNAPSHOT.jar started by skhurana1 in /Users/skhurana1/code/tips_java)
+2022-03-12 22:28:24,559 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.4.5, Spring v5.3.6
+2022-03-12 22:28:24,559 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-03-12 22:28:26,642 INFO org.springframework.boot.StartupInfoLogger [main] Started TipsApplication in 2.602 seconds (JVM running for 3.07)
+2022-03-12 22:28:46,690 DEBUG com.skh.tips.controller.TipsController [http-nio-8080-exec-1] returning tips
+2022-03-12 22:31:30,081 DEBUG com.skh.tips.controller.TipsController [https-jsse-nio-8443-exec-8] returning tips

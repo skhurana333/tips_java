@@ -1,0 +1,30 @@
+apiVersion: apps/v1 #replicaset belong to this api
+kind: ReplicaSet
+metadata:
+  name: java-tips-service-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: java-tips-backend-affinity
+  template: 
+    metadata:
+      labels:
+        app: java-tips-backend-affinity
+    spec:
+      containers:
+        - name: java-docker-skh-container
+          image: java-docker_skh:latest
+          imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-tips-service-backend
+spec:
+  sessionAffinity: ClientIP
+  ports:
+    - port: 7777          # service available on this port
+      targetPort: 8080  # container port the service will forward to
+  selector:
+    app: java-tips-backend-affinity
