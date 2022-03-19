@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-tips-svc
+spec:
+  ports:
+  - name: http              
+    port: 80               
+    targetPort: 8080       
+  - name: https            
+    port: 443              
+    targetPort: 8443       
+  selector:                
+    app: both-ports
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: java-docker-skh
+  labels:
+    app: both-ports
+spec:
+   containers:
+   - image: java_docker_skh:9.0
+     imagePullPolicy: IfNotPresent
+     command: ["./mvnw", "spring-boot:run"]
+     name: java-docker-skh           

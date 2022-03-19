@@ -9,9 +9,3 @@ spec:
      imagePullPolicy: IfNotPresent
      command: ["./mvnw", "spring-boot:run"]
      name: java-docker-skh
-     livenessProbe:
-       httpGet:
-         path: /
-         port: 8080
-       periodSeconds: 20
-       timeoutSeconds: 15

@@ -1,5 +1,3 @@
-# kubectl delete rc uip-adapter-rc --cascade=false
-# kubectl create -f repl_controller.yaml
 apiVersion: v1
 kind: ReplicationController # this manifests define a replication controller
 metadata:
