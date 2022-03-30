@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: java-docker-skh-rc
-          image: java-docker_skh:latest
+          image: java_docker_skh:9.0
           imagePullPolicy: IfNotPresent
           command: ["./mvnw", "spring-boot:run"]
           ports:
