@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: java-docker-skh
+
+spec:
+   containers:
+   - image: java-docker_skh:latest
+     imagePullPolicy: IfNotPresent
+     command: ["./mvnw", "spring-boot:run"]
+     name: java-docker-skh
