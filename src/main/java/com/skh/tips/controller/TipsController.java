@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileReader;
+import java.nio.file.*;
+
 @RestController
 public class TipsController {
 
@@ -68,4 +71,22 @@ public class TipsController {
 
         return "{\"tip\" :" + "\""    + db_url +   ":FirstTip,\"" + data + "}";
     }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/getoutput")
+    public String getProcessOutput() {
+        try {
+            if (Files.exists(Paths.get("/usr/share/nginx/html"))) {
+                return "no path found - /usr/share/nginx.html";
+            } else {
+                FileReader reader = new FileReader("/usr/share/nginx/html/op");
+                return Files.readAllLines(Paths.get("/usr/share/nginx/html/op/")).toString();
+
+            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            return "error occurred ";
+        }
+    }
+
 }
