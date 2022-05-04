@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc #name of claim, will be used in pod's defn
+spec:
+  resources:
+    requests:                    
+      storage: 1Gi # asking for 1GB
+  accessModes:                   
+  - ReadWriteOnce   # both read and write
+  storageClassName: ""  # to be discussed later
+

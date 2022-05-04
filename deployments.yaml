@@ -1,0 +1,19 @@
+apiVersion: apps/v1         
+kind: Deployment                  
+metadata:
+  name: tips-app                    
+spec:
+  replicas: 3
+  selector:
+    matchLabels: 
+      app: tips-app
+  template:  
+    metadata:
+      name: tips-app
+      labels:
+        app: tips-app
+    spec:
+      containers:
+      - image: java-docker_skh:latest
+        imagePullPolicy: IfNotPresent
+        name: tips-app-container
