@@ -21,7 +21,7 @@ metadata:
     app: named-ports
 spec:
    containers:
-   - image: java_docker_skh:9.0
+   - image: java_docker_skh:latest
      imagePullPolicy: IfNotPresent
      command: ["./mvnw", "spring-boot:run"]
      name: java-docker-skh
