@@ -1,11 +1,11 @@
 package com.skh.tips.controller;
 
+import com.skh.tips.service.StatefulService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -32,8 +32,12 @@ public class TipsController {
     // secrets injection
     @Value("${db_password:defdbpw}")
     private String dbPassword;
+
     @Value("${client_secret:defcs}")
     private String clientSecret;
+
+    @Autowired
+    private StatefulService service;
 
     private Logger logger = LogManager.getLogger(TipsController.class);
 
@@ -49,6 +53,16 @@ public class TipsController {
         return "{\"info1\" :" + "\""    + dbPassword + "\"" +
               "\"info2\" :" + "\""    + clientSecret + "\"" +
             "\",Warning\":"  + "\". !!!NEVER DO THIS. ITS ONLY FOR DEMO!!!}\"";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/setstate")
+    public void setStateful(@RequestParam(name = "data") String inputData) {
+        service.setValue(inputData);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/getstate")
+    public String getState() {
+        return "Value is - " + service.getValue();
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/tipsall")
