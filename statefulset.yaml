@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: tipsdatestatefulset
+spec:
+  serviceName: headless-service-forstateful1 # headless service created for this
+  selector:
+    matchLabels:
+      app: sfs1 # has to match .spec.template.metadata.labels
+  replicas: 2
+  template:
+    metadata:
+      labels:                        
+        app: sfs1        # matching the selector in the service
+    spec:
+      containers:
+      - name: tips-stateful
+        image: tips-stateful:latest
+        imagePullPolicy: IfNotPresent
+        command: ["./mvnw", "spring-boot:run"]
+        ports:
+        - name: http
+          containerPort: 8080
+        volumeMounts:
+        - name: local-pv1     #pvc vol mount,same as in vol template metadata name
+          mountPath: /var/data       
+  volumeClaimTemplates:
+  - metadata:                        
+      name: local-pv1    # pvc name
+    spec:                            
+      resources:                     
+        requests:                    
+          storage: 1Mi               
+      accessModes:                   
+      - ReadWriteOnce                

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: headless-service-forstateful1             
+spec:
+  clusterIP: None # makes it headless service        
+  selector:               
+    app: sfs1  # pods with app=sfs1 will belong to this service.          
+  ports:
+  - name: http
+    port: 8080

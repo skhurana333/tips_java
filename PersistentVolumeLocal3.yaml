@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-pv3
+spec:
+  capacity:       # size
+    storage: 20Gi            
+  accessModes:                            
+  - ReadWriteOnce # 1 client can use in rw mode         
+  - ReadOnlyMany  # rest of clients can use only in read mode
+  persistentVolumeReclaimPolicy: Retain # dont delete after its PVC is removed  
+  hostPath:  # for local node, for dev and testing only                        
+    path: /Users/skhurana1                         
+       
